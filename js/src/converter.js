@@ -1038,7 +1038,7 @@ export default class RevealJsConverter extends ConverterBase {
       const src = `${assetUriScheme}//www.youtube.com/embed/${node.getAttribute('target')}?${params.join('&amp;')}`
       buf += `<iframe${attributes({ width, height, src, frameborder: 0, allowfullscreen: !node.hasOption('nofullscreen'), 'data-autoplay': node.hasOption('autoplay'), allow: node.hasOption('autoplay') ? 'autoplay' : null })}></iframe>`
     } else {
-      buf += `<video${attributes({ src: node.mediaUri(node.getAttribute('target')), width, height, poster: node.getAttribute('poster') ? node.mediaUri(node.getAttribute('poster')) : null, 'data-autoplay': node.hasOption('autoplay'), controls: !node.hasOption('nocontrols'), loop: node.hasOption('loop') })}>Your browser does not support the video tag.</video>`
+      buf += `<video${attributes({ src: node.mediaUri(node.getAttribute('target')), width, height, poster: node.getAttribute('poster') ? node.mediaUri(node.getAttribute('poster')) : null, 'data-autoplay': node.hasOption('autoplay'), controls: !node.hasOption('nocontrols'), loop: node.hasOption('loop'), muted: node.hasOption('muted') })}>Your browser does not support the video tag.</video>`
     }
     return `<div${attrs}>${buf}</div>`
   }

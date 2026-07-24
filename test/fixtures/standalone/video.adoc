@@ -46,7 +46,7 @@ video::https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-e
 // https://github.com/obilodeau/asciidoctor-assets/blob/master/videos/synthwave.mp4
 == video file, options
 
-video::synthwave.mp4[options="autoplay,loop"]
+video::synthwave.mp4[options="autoplay,loop,muted"]
 
 
 == vimeo autostart
