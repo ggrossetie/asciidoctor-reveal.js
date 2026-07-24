@@ -849,7 +849,7 @@ module Asciidoctor
           buf << %(<video#{attributes({ src: node.media_uri(node.attr(:target)), width: width, height: height,
                                         poster: (node.attr(:poster) ? node.media_uri(node.attr(:poster)) : nil),
                                         'data-autoplay' => (node.option? 'autoplay'), controls: !(node.option? 'nocontrols'),
-                                        loop: (node.option? 'loop') })}>Your browser does not support the video tag.</video>)
+                                        loop: (node.option? 'loop'), muted: (node.option? 'muted') })}>Your browser does not support the video tag.</video>)
         end
         %(<div#{attrs}>#{buf}</div>)
       end
