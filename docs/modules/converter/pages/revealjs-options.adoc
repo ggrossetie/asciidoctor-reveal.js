@@ -24,7 +24,7 @@ Default is disabled.
 |:highlightjs-theme:
 |<file\|URL>
 |Overrides {url-highlightjs}[highlight.js^] CSS style with given file or URL.
-Default is built-in [path]_lib/css/zenburn.css_.
+Default is reveal.js`' own bundled [path]_dist/plugin/highlight/monokai.css_.
 
 |:revealjsdir:
 |<file\|URL>

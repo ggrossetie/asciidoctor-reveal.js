@@ -3,12 +3,22 @@
 [[customcss]]
 == CSS Override
 
-If you use the `:customcss:` document attribute, a CSS file of the name given in the attribute is added to the list of CSS resources loaded by the rendered HTML.
-Doing so, you can then override specific elements of your theme per presentation.
+If you use the `:customcss:` document attribute, a `<link>` to the CSS file named by the attribute is added to the rendered HTML, alongside whichever theme is already active (see xref:revealjs-options.adoc[] for `:revealjs_theme:`/`:revealjs_customtheme:`).
+This lets you override specific elements of that theme on a per-presentation basis, without having to author a full theme.
+
+WARNING: The converter only links to this file; it does not generate it.
+You need to create the CSS file yourself, alongside your AsciiDoc document, with the filename you gave the `:customcss:` attribute (or the default one, see below, if you left the attribute empty).
 
 For example, to do proper position-independent text placement of a title slide with a specific background you can use:
 
-[source, css]
+.presentation.adoc
+[source,asciidoc]
+----
+:customcss: my-styles.css
+----
+
+.my-styles.css
+[source,css]
 ----
 .reveal section.title h1 {
     margin-top: 2.3em;
@@ -21,5 +31,14 @@ For example, to do proper position-independent text placement of a title slide w
 }
 ----
 
-If the `:customcss:` attribute value is empty then `asciidoctor-revealjs.css` is the CSS resource that the presentation is linked to.
+If the `:customcss:` attribute is set with an empty value (`:customcss:`, no filename), the converter falls back to a conventional filename, `asciidoctor-revealjs.css`, sitting alongside your document.
+It's still a file *you* need to provide — the converter never creates it for you, empty value or not.
+
+== `revealjs_theme` vs. `revealjs_customtheme` vs. `customcss`
+
+These three attributes all affect a presentation's appearance, but at different levels:
+
+`:revealjs_theme:`:: Selects one of reveal.js's own link:{url-revealjs-doc}/themes/[built-in themes] (`black`, `white`, `league`, ...) — a complete, ready-made stylesheet reveal.js ships with. See xref:revealjs-options.adoc[].
+`:revealjs_customtheme:`:: *Replaces* the theme stylesheet entirely with a file or URL of your own, instead of picking one of the built-in themes. Use this when you're authoring (or reusing) a full theme, not just tweaking one. See xref:revealjs-options.adoc[].
+`:customcss:`:: *Adds* an extra stylesheet on top of whichever theme is active (built-in or custom), loaded after it. Use this for small, presentation-specific overrides — you don't need a whole theme just to change a heading's margin.
 
