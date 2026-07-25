@@ -237,7 +237,7 @@ module Asciidoctor
 
       def convert_embedded(node, _opts = {})
         buf = +''
-        buf << %(<h1#{attributes(id: node.id)}>#{node.header.title}</h1>) unless node.notitle || !node.has_header?
+        buf << convert(node, 'title_slide') if node.has_header? && !node.notitle
         buf << node.content.to_s
         unless !node.footnotes? || node.attr?(:nofootnotes)
           buf << %(<div id="footnotes"><hr>)

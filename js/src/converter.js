@@ -648,7 +648,7 @@ export default class RevealJsConverter extends ConverterBase {
 
   async convert_embedded (node) {
     let buf = ''
-    if (!node.isNotitle() && node.hasHeader()) buf += `<h1${attributes({ id: node.getId() })}>${node.getHeader().title}</h1>`
+    if (node.hasHeader() && !node.isNotitle()) buf += await this.convert(node, 'title_slide')
     buf += (await node.content()) ?? ''
     if (node.hasFootnotes() && !node.hasAttribute('nofootnotes')) {
       buf += '<div id="footnotes"><hr>'
